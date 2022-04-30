@@ -19,12 +19,10 @@ public class PalindromeApp
     
     static boolean checkInput(String input){
         String str = input;
-        if ((str.matches("\\b\\w*\\b(, \\b\\w*\\b)+"))){
-            str.substring(str.indexOf(", "));
-            checkInput(str);
+        if ((str.matches("\\A\\b\\w*\\b(, \\b\\w*\\b)+\\z"))){
             return true;
         }
-        else if(str.matches("^\\b\\w*\\b$"))
+        else if(str.matches("\\A\\b\\w*\\b\\z"))
         {
             return true;
         }

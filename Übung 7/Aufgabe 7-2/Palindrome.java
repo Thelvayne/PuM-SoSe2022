@@ -3,36 +3,44 @@
 
 import java.util.Random;
 
-public class Palindrome{
+public class Palindrome
+{
     // variables
     private String[] input, palindromes;
 
     // constructor
-    public Palindrome(String[] input){
+    public Palindrome(String[] input)
+    {
         this.input = input;
     }
 
-    public Palindrome(){
+    public Palindrome()
+    {
 
     }
 
     // getter to read the values of the variables as mentioned in the task
-    public String[] getInput() {
+    public String[] getInput() 
+    {
         return input;
     }
 
-    public String[] getPalindromes() {
+    public String[] getPalindromes() 
+    {
         return palindromes;
     }
 
     // methods
-    private boolean isPalindrome(String input){
+    private boolean isPalindrome(String input)
+    {
         input.toLowerCase();
         int charFromBack = input.length() - 1;
         int charFromFront = 0;
 
-        while (charFromFront > charFromBack){
-            if (input.charAt(charFromFront) != input.charAt(charFromBack)){
+        while (charFromFront > charFromBack)
+        {
+            if (input.charAt(charFromFront) != input.charAt(charFromBack))
+            {
                 return false;
             }
             charFromFront++;
@@ -41,17 +49,21 @@ public class Palindrome{
         return true;
     }
 
-    private void findPalindromes(String[] input){
+    private void findPalindromes(String[] input)
+    {
         int i = 0;
-        while (i < input.length){
-            if (isPalindrome(input[i]) == true){
+        while (i < input.length)
+        {
+            if (isPalindrome(input[i]) == true)
+            {
                 addPalindromeToArray(input[i]);
             }            
             i++;
         }
     }
 
-    private void addSpaceToArray(String[] input){ // method to increase the length of an array w/out losing content
+    private void addSpaceToArray(String[] input) // method to increase the length of an array w/out losing content
+    { 
         if (input == null){
             input = new String[0];
         }
@@ -63,14 +75,17 @@ public class Palindrome{
 
     }
 
-    private void addPalindromeToArray(String input){ // add a new palindrome to the array
+    private void addPalindromeToArray(String input) // add a new palindrome to the array
+    {
         addSpaceToArray(this.palindromes);
         this.palindromes[this.palindromes.length - 1] = input;
     }
 
-    public void addNewPalindrome(int length){
+    public void addNewPalindrome(int length)
+    {
         // checking for requirement
-        if (length <= 0){
+        if (length <= 0)
+        {
             System.out.println("Die Länge des Palindroms muss > 0 sein!");
             return;
         }
@@ -78,22 +93,26 @@ public class Palindrome{
         String firstHalf = "";
         String secondHalf = "";
 
-        for (int i = 0; i <= length/2; i++){
+        for (int i = 0; i <= length/2; i++)
+        {
             String tempChar = createRandomChar();
             firstHalf = firstHalf + tempChar;
-            }
+        }
 
-        for (int i = firstHalf.length()-1; i >= 0; i--){
+        for (int i = firstHalf.length()-1; i >= 0; i--)
+        {
             String reverseChar = String.valueOf(firstHalf.charAt(i));
             secondHalf = secondHalf + reverseChar;
         }
 
-        if (length%2 == 0){
+        if (length%2 == 0)
+        {
             String newPalindrome = firstHalf + secondHalf;
             addPalindromeToArray(newPalindrome);
             return;
         }
-        else {
+        else 
+        {
             String middle = createRandomChar();
             String newPalindrome = firstHalf + middle + secondHalf;
             addPalindromeToArray(newPalindrome);
@@ -101,7 +120,8 @@ public class Palindrome{
         }
     }
 
-    private String createRandomChar(){
+    private String createRandomChar()
+    {
         // define allowed alphabet for creation
         String upperCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz";
