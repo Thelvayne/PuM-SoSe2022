@@ -126,9 +126,7 @@ public class Palindrome
         // define allowed alphabet for creation
         String upperCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz";
-        // String numbers = "0123456789";
-        // String specialSymbols = "ÄäÖöÜüß";
-        String allSymbols = upperCaseAlphabet + lowerCaseAlphabet /*+ numbers + specialSymbols*/;
+        String allSymbols = upperCaseAlphabet + lowerCaseAlphabet;
 
         Random ran = new Random();
         int randomIndexAllSymbols = ran.nextInt(allSymbols.length());
@@ -137,7 +135,7 @@ public class Palindrome
         return str;
     }
 
-    public void printPalindromes() //still gets error
+    public void printPalindromes()
     {
         String output = "";
         findPalindromes(input);
