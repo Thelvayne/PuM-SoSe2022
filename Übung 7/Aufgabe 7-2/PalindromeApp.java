@@ -10,10 +10,18 @@ public class PalindromeApp
 
         System.out.println("Geben Sie Ihre Auswahl an Wörtern an: ");
         String input = scan.nextLine();
-        if (checkInput(input) == false)
+        while (checkInput(input) == false)
         {
             System.out.println("Bitte geben Sie die Eingabe in folgendem Format an: \"Wort, Wort\" ");
+            input = scan.nextLine();
         }
+        
+        Palindrome pal = new Palindrome(inputToStringArray(input));
+
+        
+
+        pal.printPalindromes();
+
         
     }
     
@@ -32,4 +40,22 @@ public class PalindromeApp
         }    
     }
 
+    private static String[] inputToStringArray(String input)
+    {
+        String[] inputArray = new String[0];
+        int i = 0;
+        
+        while (input.contains(","))
+        {
+            int index = input.indexOf(",");
+            String input1 = input.substring(0, index);
+            input = input.substring(index + 2);
+            inputArray = Palindrome.addSpaceToArray(inputArray);
+            inputArray[i] = input1;
+            i++;
+        }
+        inputArray = Palindrome.addSpaceToArray(inputArray);
+        inputArray[i] = input;
+        return inputArray;
+    }
 }

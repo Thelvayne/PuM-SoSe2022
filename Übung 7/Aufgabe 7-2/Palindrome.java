@@ -33,11 +33,11 @@ public class Palindrome
     // methods
     private boolean isPalindrome(String input)
     {
-        input.toLowerCase();
+        input = input.toLowerCase();
         int charFromBack = input.length() - 1;
         int charFromFront = 0;
 
-        while (charFromFront > charFromBack)
+        while (charFromFront < charFromBack)
         {
             if (input.charAt(charFromFront) != input.charAt(charFromBack))
             {
@@ -62,7 +62,7 @@ public class Palindrome
         }
     }
 
-    private void addSpaceToArray(String[] input) // method to increase the length of an array w/out losing content
+    public static String[] addSpaceToArray(String[] input) // method to increase the length of an array w/out losing content
     { 
         if (input == null){
             input = new String[0];
@@ -72,12 +72,13 @@ public class Palindrome
 
         String[] longerArray = new String[newLength];
         System.arraycopy(input, 0, longerArray, 0, oldLength);
+        return longerArray;        
 
     }
 
     private void addPalindromeToArray(String input) // add a new palindrome to the array
     {
-        addSpaceToArray(this.palindromes);
+        this.palindromes = addSpaceToArray(this.palindromes);
         this.palindromes[this.palindromes.length - 1] = input;
     }
 
@@ -134,5 +135,25 @@ public class Palindrome
         char sym = allSymbols.charAt(randomIndexAllSymbols);
         String str = String.valueOf(sym);
         return str;
+    }
+
+    public void printPalindromes() //still gets error
+    {
+        String output = "";
+        findPalindromes(input);
+        if (palindromes == null)
+        {
+            System.out.println("Es wurden keine Palindrome gefunden.");
+        }
+        else
+        {
+
+            for (int i = 0; i <= palindromes.length - 1; i++)
+            {
+                output = output + ", " + palindromes[i] ;
+            }
+            output = output.substring(2);
+            System.out.println(output);
+        }
     }
 }
