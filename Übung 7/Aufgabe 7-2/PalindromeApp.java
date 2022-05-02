@@ -14,22 +14,19 @@ public class PalindromeApp
 
         System.out.println("Geben Sie Ihre Auswahl an Wörtern an: ");
         String input = scan.nextLine();
-        if (input != "")
-        {
-
-            while (checkInput(input) == false)
+        while (checkInput(input) == false)
             {
                 System.out.println("Bitte geben Sie die Eingabe in folgendem Format an: \"Wort, Wort\" ");
                 input = scan.nextLine();
             }
-            
-            pal = new Palindrome(inputToStringArray(input));
-            
-        }
-        else
-        {
-            pal = new Palindrome();
-        }
+            if (input.equals(""))
+            {
+                pal = new Palindrome(inputToStringArray(input));
+            }
+            else {
+                pal = new Palindrome();
+            }
+        
         while (true)
         {
             System.out.println("Möchten Sie sich ein Palindrome generieren lassen? (J/N)");
@@ -52,15 +49,16 @@ public class PalindromeApp
         }
 
         pal.printPalindromes();
+        scan.close();
 
         
     }
     
-    static boolean checkInput(String input){
-        if ((input.matches("\\A\\b\\w*\\b(, \\b\\w*\\b)+\\z"))){
+    private static boolean checkInput(String input){
+        if ((input.matches("\\A\\b\\w*\\b(, \\b\\w*\\b)*\\z"))){
             return true;
         }
-        else if(input.matches("\\A\\b\\w*\\b\\z"))
+        else if(input.matches(""))
         {
             return true;
         }
@@ -70,7 +68,7 @@ public class PalindromeApp
         }    
     }
 
-    private static String[] inputToStringArray(String input)
+    static String[] inputToStringArray(String input)
     {
         String[] inputArray = new String[0];
         int i = 0;

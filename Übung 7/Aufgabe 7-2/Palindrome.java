@@ -12,10 +12,13 @@ public class Palindrome
     public Palindrome(String[] input)
     {
         this.input = input;
+        this.palindromes = null;
     }
 
     public Palindrome()
     {
+        this.input = new String[0];
+        this.palindromes = null;
 
     }
 
