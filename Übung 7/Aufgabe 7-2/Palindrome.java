@@ -17,7 +17,6 @@ public class Palindrome
 
     public Palindrome()
     {
-        this.input = new String[0];
         this.palindromes = null;
 
     }
@@ -54,6 +53,10 @@ public class Palindrome
 
     private void findPalindromes(String[] input)
     {
+        if (input == null)
+        {
+            return;
+        }
         int i = 0;
         while (i < input.length)
         {
@@ -138,13 +141,14 @@ public class Palindrome
         return str;
     }
 
-    public void printPalindromes()
+    public String printPalindromes()
     {
         String output = "";
         findPalindromes(input);
         if (palindromes == null)
         {
-            System.out.println("Es wurden keine Palindrome gefunden.");
+            output = "Es wurden keine Palindrome gefunden.";
+            return output;
         }
         else
         {
@@ -154,7 +158,7 @@ public class Palindrome
                 output = output + ", " + palindromes[i] ;
             }
             output = output.substring(2);
-            System.out.println(output);
+            return output;
         }
     }
 }

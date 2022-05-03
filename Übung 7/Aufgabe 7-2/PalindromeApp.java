@@ -19,7 +19,7 @@ public class PalindromeApp
                 System.out.println("Bitte geben Sie die Eingabe in folgendem Format an: \"Wort, Wort\" ");
                 input = scan.nextLine();
             }
-            if (input.equals(""))
+            if (input.equals("") == false)
             {
                 pal = new Palindrome(inputToStringArray(input));
             }
@@ -48,9 +48,8 @@ public class PalindromeApp
             }
         }
 
-        pal.printPalindromes();
+        System.out.println(pal.printPalindromes());
         scan.close();
-
         
     }
     
