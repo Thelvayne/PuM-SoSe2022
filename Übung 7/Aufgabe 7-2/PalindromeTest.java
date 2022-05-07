@@ -25,8 +25,7 @@ public class PalindromeTest {
     void creatingCorretConstructorWithoutInput()
     {
         var pal = new Palindrome();
-        String[] expected = new String[0];
-        assertArrayEquals(expected, pal.getInput());
+        assertArrayEquals(null, pal.getInput());
     }
     @Test
     void creatingCorretConstructorWithInput()

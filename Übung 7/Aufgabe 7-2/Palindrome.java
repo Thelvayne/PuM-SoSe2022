@@ -18,10 +18,8 @@ public class Palindrome
     public Palindrome()
     {
         this.palindromes = null;
-
     }
 
-    // getter to read the values of the variables as mentioned in the task
     public String[] getInput() 
     {
         return input;
@@ -32,7 +30,13 @@ public class Palindrome
         return palindromes;
     }
 
-    // methods
+    /**
+     * This method takes a String input and verifies if the input is a palindrome or not. And returns it as boolean value.
+     * @param input of the type String
+     * @return
+     *
+     * The result is "true" if the input is a palindrome and "false" if not.
+     */
     private boolean isPalindrome(String input)
     {
         input = input.toLowerCase();
@@ -51,6 +55,11 @@ public class Palindrome
         return true;
     }
 
+    /**
+     * This method goes through an array and searches for palindromes. If palindromes are found, then they will be added to the array where the palindromes
+     * are saved. All words that are not palindromes are ignored.
+     * @param input
+     */
     private void findPalindromes(String[] input)
     {
         if (input == null)
@@ -68,10 +77,17 @@ public class Palindrome
         }
     }
 
-    public static String[] addSpaceToArray(String[] input) // method to increase the length of an array w/out losing content
+    /**
+     * IF given array is NOT initialized, then it will do so.
+     * Otherwise it will take the array, enlarge it by 1 in length and then copy the content into the newer longer array.
+     * @param input
+     * @return
+     */
+    public static String[] addSpaceToArray(String[] input)
     { 
         if (input == null){
-            input = new String[0];
+            input = new String[1];
+            return input;
         }
         int oldLength = input.length;
         int newLength = oldLength + 1;
@@ -79,15 +95,22 @@ public class Palindrome
         String[] longerArray = new String[newLength];
         System.arraycopy(input, 0, longerArray, 0, oldLength);
         return longerArray;        
-
     }
 
-    private void addPalindromeToArray(String input) // add a new palindrome to the array
+    /**
+     * Adds a String into a String array.
+     * @param input
+     */
+    private void addPalindromeToArray(String input)
     {
         this.palindromes = addSpaceToArray(this.palindromes);
         this.palindromes[this.palindromes.length - 1] = input;
     }
 
+    /**
+     * Creates a new palindrome of a certain length that the user chose.
+     * @param length
+     */
     public void addNewPalindrome(int length)
     {
         // checking for requirement
@@ -127,6 +150,10 @@ public class Palindrome
         }
     }
 
+    /**
+     * Creates random chars that are converted to String and returned.
+     * @return
+     */
     private String createRandomChar()
     {
         // define allowed alphabet for creation
@@ -141,6 +168,10 @@ public class Palindrome
         return str;
     }
 
+    /**
+     * Creates a String with all palindromes that are within the array. Which can be printed out.
+     * @return
+     */
     public String printPalindromes()
     {
         String output = "";
