@@ -44,7 +44,7 @@ public class Contact {
 
     public void addMessenger (Messenger messengerString)
     {
-        addSpaceToArray(this.messenger);
+        this.messenger = addSpaceToArray(this.messenger);
         this.messenger[this.messenger.length-1] = messengerString;
         
     }
@@ -52,7 +52,8 @@ public class Contact {
     private static Messenger[] addSpaceToArray(Messenger[] input) // method to increase the length of an array w/out losing content
     { 
         if (input == null){
-            input = new Messenger[0];
+            input = new Messenger[1];
+            return input;
         }
         int oldLength = input.length;
         int newLength = oldLength + 1;

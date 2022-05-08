@@ -1,7 +1,6 @@
 // Nick Cwertetschka 4070430
 // Philipp Jäckel 4070258
 
-import java.io.IOException;
 import java.util.Random;
 
 public class Palindrome
@@ -63,10 +62,6 @@ public class Palindrome
      */
     private void findPalindromes(String[] input)
     {
-        if (input == null)
-        {
-            return;
-        }
         int i = 0;
         while (i < input.length)
         {

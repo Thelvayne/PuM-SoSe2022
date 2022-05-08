@@ -5,25 +5,32 @@ public class ContactWriter {
     public void writeToFile(Contact[] contacts, String filename) throws IOException
     {
         
-        ContactReader cr = new ContactReader();
+    //    ContactReader cr = new ContactReader();
         FileWriter fw = new FileWriter(filename);
         StringBuilder sb = new StringBuilder();
-        String headStr = "First Name; Last Name; Phone; Messenger \n";
+        String headStr = "First Name;Last Name;Phone;Messenger\n";
         sb.append(headStr);
-        for (int i = 0; i < cr.getContacts().length; i++)
+        for (int i = 0; i < contacts.length; i++)
         {
-            sb.append("\"" + cr.getContacts()[i].getFirstName() + "\";");
-            sb.append("\"" + cr.getContacts()[i].getLastName() + "\";");
-            sb.append("\"" + cr.getContacts()[i].getPhone() + "\";");
-            for (int j = 0; j < cr.getContacts()[i].getMessenger().length; j++)
+            sb.append(contacts[i].getFirstName() + ";");
+            sb.append(contacts[i].getLastName() + ";");
+            sb.append(contacts[i].getPhone() + ";");
+            for (int j = 0; j < contacts[i].getMessenger().length; j++)
             {
-                if (j <= cr.getContacts()[i].getMessenger().length - 2)
+                if (j <= contacts[i].getMessenger().length - 2)
                 {
-                    sb.append("\"" + cr.getContacts()[i].getMessenger()[j].toString() + "\",");
+                    sb.append(contacts[i].getMessenger()[j].toString() + ",");
                 }
                 else
                 {
-                    sb.append("\"" + cr.getContacts()[i].getMessenger()[j].toString() + "\"" + "\n");
+                    if (i + 1 != contacts.length)
+                    {
+                        sb.append(contacts[i].getMessenger()[j].toString() + "\n");
+                    }
+                    else
+                    {
+                        sb.append(contacts[i].getMessenger()[j].toString());
+                    }
                 }
             }
         }

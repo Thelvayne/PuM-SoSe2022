@@ -18,7 +18,6 @@ public class ContactReader {
 
     public void readFromFile (String filename) throws IOException
     {
-        // StringBuilder sb = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(filename)))
         {
             String line;
@@ -28,36 +27,36 @@ public class ContactReader {
                 if (line.startsWith("["))
                 {
                     contact = new Contact();
-                    addSpaceToArray(contacts);
+                    contacts = addSpaceToArray(contacts);
                     contacts[contacts.length-1] = contact;
                 }
                 if (line.contains("first_name"))
                 {
-                    contacts[contacts.length - 1].setFirstName(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
+                    contacts[contacts.length - 1].setFirstName(line.substring(line.indexOf("\"") + 1, line.length() - 1));
                 }
                 if (line.contains("last_name"))
                 {
-                    contacts[contacts.length - 1].setLastName(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
+                    contacts[contacts.length - 1].setLastName(line.substring(line.indexOf("\"") + 1, line.length() - 1));
                 }
                 if (line.contains("phone"))
                 {
-                    contacts[contacts.length - 1].setPhone(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
+                    contacts[contacts.length - 1].setPhone(line.substring(line.indexOf("\"") + 1, line.length() - 1));
                 }
                 if (line.startsWith("messenger"))
                 {
-                    if (line.contains("WHATSAPP"))
+                    if (line.toUpperCase().contains("WHATSAPP"))
                     {
                         contacts[contacts.length - 1].addMessenger(Messenger.WHATSAPP);
                     }
-                    if (line.contains("FACEBOOK_MESSENGER"))
+                    if (line.toUpperCase().contains("FACEBOOK MESSENGER"))
                     {
                         contacts[contacts.length - 1].addMessenger(Messenger.FACEBOOK_MESSENGER);
                     }
-                    if (line.contains("SMS"))
+                    if (line.toUpperCase().contains("SMS"))
                     {
                         contacts[contacts.length - 1].addMessenger(Messenger.SMS);
                     }
-                    if (line.contains("SIGNAL"))
+                    if (line.toUpperCase().contains("SIGNAL"))
                     {
                         contacts[contacts.length - 1].addMessenger(Messenger.SIGNAL);
                     }
@@ -74,7 +73,8 @@ public class ContactReader {
     private static Contact[] addSpaceToArray(Contact[] input) // method to increase the length of an array w/out losing content
     {
         if (input == null){
-            input = new Contact[0];
+            input = new Contact[1];
+            return input;
         }
         int oldLength = input.length;
         int newLength = oldLength + 1;
