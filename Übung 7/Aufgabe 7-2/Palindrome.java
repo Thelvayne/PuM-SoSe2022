@@ -1,6 +1,7 @@
 // Nick Cwertetschka 4070430
 // Philipp Jäckel 4070258
 
+import java.io.IOException;
 import java.util.Random;
 
 public class Palindrome
@@ -74,6 +75,10 @@ public class Palindrome
                 addPalindromeToArray(input[i]);
             }            
             i++;
+        }
+        if (palindromes == null)
+        {
+            palindromes = new String[0];
         }
     }
 

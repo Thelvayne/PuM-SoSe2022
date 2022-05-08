@@ -1,4 +1,7 @@
-public class BinMath 
+// Nick Cwertetschka 4070430
+// Philipp Jäckel 4070258
+
+public class BinMath
 {
     /**
      * This method is used to convert decimal numbers to binary numbers of chosen bit length.
@@ -36,7 +39,7 @@ public class BinMath
             {
                 if (rest >= (int)Math.pow(2, binNumber.length - 1 - i))
                 {
-                    rest = (int)Math.pow(2, binNumber.length - 1 - i) - Math.abs(rest);
+                    rest = rest - (int)Math.pow(2, binNumber.length - 1 - i);
                     binNumber[i] = 1;
                 }
                 else
@@ -62,21 +65,21 @@ public class BinMath
     static int binToDec(int[] binValue)
     {
         int decNumber;
-        if (binValue[0] == 0)
+        if (binValue[0] == 1)    
         {
-            decNumber = 0;
-            for (int i = 0; i < binValue.length; i++)
+            decNumber = (-1) * ((int)Math.pow(2, binValue.length - 1));
+            for (int i = 1; i < binValue.length; i++)
             {
-                decNumber = decNumber + (int)Math.pow(2, binValue.length - i) * binValue[i];
+                decNumber = decNumber + ((int)Math.pow(2, binValue.length - 1 - i) * binValue[i]);
             }
             return decNumber;
         }
         else
         {
-            decNumber = -((int)Math.pow(2, binValue.length - 1));
-            for (int i = 1; i < binValue.length; i++)
+            decNumber = 0;
+            for (int i = 0; i < binValue.length; i++)
             {
-                decNumber = decNumber + (int)Math.pow(2, binValue.length - i) * binValue[i];
+                decNumber = decNumber + (int)Math.pow(2, binValue.length - 1 - i) * binValue[i];
             }
             return decNumber;
         }
@@ -95,16 +98,36 @@ public class BinMath
         if (operand1.length >= operand2.length)
         {
             sumBinNum = new int[operand1.length];
+            if (operand1.length != operand2.length)
+            {
+                if (operand2[0] == 0)
+                {
+                    operand2 = addZeroToArrayBegin(operand2, operand1.length - operand2.length);
+                }
+                else
+                {
+                    operand2 = addOneToArrayBegin(operand2, operand1.length - operand2.length);
+                }
+            }
         }
         else
         {
             sumBinNum = new int[operand2.length];
+            if (operand2[0] == 0)
+            {
+                operand1 = addZeroToArrayBegin(operand1, operand2.length-operand1.length);
+            }
+            else 
+            {
+                operand1 = addOneToArrayBegin(operand1, operand2.length-operand1.length);
+            }
         }
         for (int i = sumBinNum.length - 1; i > 0; i--)
         {
-            if (operand1[i] + operand2[i] + transfer == 0 || operand1[i] + operand2[i] + transfer == 1)
+            if ((operand1[i] + operand2[i] + transfer == 0) || (operand1[i] + operand2[i] + transfer == 1))
             {
                 sumBinNum[i] = operand1[i] + operand2[i] + transfer;
+                transfer = 0;
             }
             else if (operand1[i] + operand2[i] + transfer == 2)
             {
@@ -120,51 +143,55 @@ public class BinMath
             {
                 transfer = 0;
             }
-
-            if (operand1[0] == 0 && operand2[0] == 0 && transfer == 0)
-            {
-                sumBinNum[0]= 0;
-                return sumBinNum;
-            }
-            else if (operand1[0] == 0 && operand2[0] == 0 && transfer == 1)
-            {
-                sumBinNum[0] = 1;
-                addSpaceToArray(sumBinNum);
-                sumBinNum[0] = 0;
-                return sumBinNum;
-            }
-            else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 1)
-            {
-                sumBinNum[0] = 0;
-                return sumBinNum;
-            }
-            else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 0)
-            {
-                sumBinNum[0] = 1;
-            }
-            else if (operand1[0] == 1 && operand2[0] == 1 && transfer == 0)
-            {
-                sumBinNum[0] = 0;
-                addSpaceToArray(sumBinNum);
-                sumBinNum[0] = 1;
-                return sumBinNum;
-            }
-            else if (operand1[0] == 1 && operand2[0] == 1 && transfer == 1)
-            {
-                sumBinNum[0] = 1;
-                addSpaceToArray(sumBinNum);
-                sumBinNum[0] = 1;
-                return sumBinNum;
-            }
-            else
-            {
-                sumBinNum[0] = 2;
-            }
+           
         }
+        if (operand1[0] == 0 && operand2[0] == 0 && transfer == 0) 
+        {
+            sumBinNum[0] = 0;
+            return sumBinNum;
+        } 
+        else if (operand1[0] == 0 && operand2[0] == 0 && transfer == 1) 
+        {
+            sumBinNum[0] = 1;
+            sumBinNum = addSpaceToArray(sumBinNum);
+            sumBinNum[0] = 0;
+            return sumBinNum;
+        } 
+        else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 1) 
+        {
+            sumBinNum[0] = 0;
+            sumBinNum = addSpaceToArray(sumBinNum);
+            sumBinNum[0] = 1;
+            return sumBinNum;
+        } 
+        else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 0) 
+        {
+            sumBinNum[0] = 1;
+            return sumBinNum;
+        } 
+        else if (operand1[0] == 1 && operand2[0] == 1 && transfer == 0) 
+        {
+            sumBinNum[0] = 0;
+            sumBinNum = addSpaceToArray(sumBinNum);
+            sumBinNum[0] = 1;
+            return sumBinNum;
+        } 
+        else if (operand1[0] == 1 && operand2[0] == 1 && transfer == 1) 
+        {
+            sumBinNum[0] = 1;
+            sumBinNum = addSpaceToArray(sumBinNum);
+            sumBinNum[0] = 1;
+            return sumBinNum;
+        } 
+        else 
+        {
+            sumBinNum[0] = 2;
+        }
+
         return sumBinNum;
     }
 
-    static String[] addSpaceToArray(int[] input)
+    static int[] addSpaceToArray(int[] input)
     { 
         if (input == null){
             input = new int[0];
@@ -172,10 +199,61 @@ public class BinMath
         int oldLength = input.length;
         int newLength = oldLength + 1;
 
-        String[] longerArray = new String[newLength];
+        int[] longerArray = new int[newLength];
         System.arraycopy(input, 0, longerArray, 1, oldLength);
         return longerArray;        
     }
+
+    /**
+     * increase of length for positive numbers
+     * @param input the array that needs to be stretched
+     * @param n length of increasement
+     * @return
+     */
+    static int[] addZeroToArrayBegin(int[] input, int n)
+    {
+        for (int i = 0; i < n; i++) 
+        {
+            if (input == null)
+            {
+            input = new int[0];
+            }
+            int oldLength = input.length;
+            int newLength = oldLength + 1;
+            
+            int[] longerArray = new int[newLength];
+            System.arraycopy(input, 0, longerArray, 1, oldLength);
+            longerArray[0] = 0;
+            input = longerArray;
+        }        
+        return input;
+    }
+
+    /**
+     * increase of length for negative numbers
+     * @param input the array that needs to be stretched
+     * @param n length of increasement
+     * @return
+     */
+    static int[] addOneToArrayBegin(int[] input, int n)
+    {
+        for (int i = 0; i < n; i++) 
+        {
+            if (input == null)
+            {
+            input = new int[0];
+            }
+            int oldLength = input.length;
+            int newLength = oldLength + 1;
+            
+            int[] longerArray = new int[newLength];
+            System.arraycopy(input, 0, longerArray, 1, oldLength);
+            longerArray[0] = 1;
+            input = longerArray;
+        }        
+        return input;
+    }
+
 
     static int[] checkArrayLength(int decValue, int size)
     {

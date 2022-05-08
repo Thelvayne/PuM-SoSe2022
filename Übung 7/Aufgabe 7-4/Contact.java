@@ -2,6 +2,11 @@ public class Contact {
     private String firstName, lastName, phone;
     private Messenger[] messenger;
 
+    public Contact()
+    {
+
+    }
+
     public String getFirstName()
     {
         return firstName;
@@ -44,7 +49,7 @@ public class Contact {
         
     }
 
-    public static Messenger[] addSpaceToArray(Messenger[] input) // method to increase the length of an array w/out losing content
+    private static Messenger[] addSpaceToArray(Messenger[] input) // method to increase the length of an array w/out losing content
     { 
         if (input == null){
             input = new Messenger[0];
