@@ -16,7 +16,7 @@ public class ContactReader {
         return contacts;
     }
 
-    private void readFromFile (String filename) throws IOException
+    public void readFromFile (String filename) throws IOException
     {
         // StringBuilder sb = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(filename)))
@@ -33,33 +33,33 @@ public class ContactReader {
                 }
                 if (line.contains("first_name"))
                 {
-                    contact.setFirstName(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
+                    contacts[contacts.length - 1].setFirstName(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
                 }
                 if (line.contains("last_name"))
                 {
-                    contact.setLastName(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
+                    contacts[contacts.length - 1].setLastName(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
                 }
                 if (line.contains("phone"))
                 {
-                    contact.setPhone(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
+                    contacts[contacts.length - 1].setPhone(line.substring(line.indexOf("\"") + 1, line.indexOf("\"", line.indexOf("\""))));
                 }
                 if (line.startsWith("messenger"))
                 {
                     if (line.contains("WHATSAPP"))
                     {
-                        contact.addMessenger(Messenger.WHATSAPP);
+                        contacts[contacts.length - 1].addMessenger(Messenger.WHATSAPP);
                     }
                     if (line.contains("FACEBOOK_MESSENGER"))
                     {
-                        contact.addMessenger(Messenger.FACEBOOK_MESSENGER);
+                        contacts[contacts.length - 1].addMessenger(Messenger.FACEBOOK_MESSENGER);
                     }
                     if (line.contains("SMS"))
                     {
-                        contact.addMessenger(Messenger.SMS);
+                        contacts[contacts.length - 1].addMessenger(Messenger.SMS);
                     }
                     if (line.contains("SIGNAL"))
                     {
-                        contact.addMessenger(Messenger.SIGNAL);
+                        contacts[contacts.length - 1].addMessenger(Messenger.SIGNAL);
                     }
                 }            
             }

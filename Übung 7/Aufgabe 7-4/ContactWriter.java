@@ -1,10 +1,10 @@
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class ContactWriter {
     public void writeToFile(Contact[] contacts, String filename) throws IOException
     {
+        
         ContactReader cr = new ContactReader();
         FileWriter fw = new FileWriter(filename);
         StringBuilder sb = new StringBuilder();
@@ -26,8 +26,6 @@ public class ContactWriter {
                     sb.append("\"" + cr.getContacts()[i].getMessenger()[j].toString() + "\"" + "\n");
                 }
             }
-
-
         }
         fw.write(sb.toString());
         fw.close();
