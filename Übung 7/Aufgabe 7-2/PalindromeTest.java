@@ -41,6 +41,7 @@ public class PalindromeTest {
         var pal = new Palindrome();
         pal.addNewPalindrome(50);
         assertTrue(isPalindrome(pal.getPalindromes()[0]));
+        assertEquals(50, pal.getPalindromes()[0].length());
     }
     @Test
     void creatingCorrectPalindromeUnevenNumber()
@@ -48,13 +49,15 @@ public class PalindromeTest {
         var pal = new Palindrome();
         pal.addNewPalindrome(51);
         assertTrue(isPalindrome(pal.getPalindromes()[0]));
+        assertEquals(51, pal.getPalindromes()[0].length());
     }
     @Test
     void creatingUnvalidPalindrome()
     {
         var pal = new Palindrome();
         pal.addNewPalindrome(0);
-        assertArrayEquals(null, pal.getPalindromes());
+        String[] exp = new String[0];
+        assertArrayEquals(exp, pal.getPalindromes());
     }
     @Test
     void outputWithoutGenerating()

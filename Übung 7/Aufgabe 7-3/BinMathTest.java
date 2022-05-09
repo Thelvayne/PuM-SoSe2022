@@ -129,7 +129,7 @@ public class BinMathTest {
     {
         int[] operand1 = {1,1,0,1};
         int[] operand2 = {0,1,0,1,1,0,1,0,1,1,0};
-        int[] expected = {0,1,0,1,1,1,0,0,0,1,1};
+        int[] expected = {0,1,0,1,1,0,1,0,0,1,1};
         assertArrayEquals(expected, BinMath.addBinaryNumbers(operand1, operand2));
     }
 
@@ -138,7 +138,7 @@ public class BinMathTest {
     {
         int[] operand1 = {1,1,0,1,1,0,1,0,1,1,0};
         int[] operand2 = {1,1,0,1};
-        int[] expected = {1,1,1,0,1,1,0,1,0,0,1,1};
+        int[] expected = {1,1,0,1,1,0,1,0,0,1,1};
         assertArrayEquals(expected, BinMath.addBinaryNumbers(operand1, operand2));
     }
 
@@ -147,7 +147,7 @@ public class BinMathTest {
     {
         int[] operand1 = {1,1,0,1,1,0,1,0,1,1,0};
         int[] operand2 = {1,0,1,1,0,0,0,1,1,0,1};
-        int[] expected = {1,1,0,0,0,1,1,0,0,0,1,1};
+        int[] expected = {1,0,0,0,1,1,0,0,0,1,1};
         assertArrayEquals(expected, BinMath.addBinaryNumbers(operand1, operand2));
     }
 
@@ -165,7 +165,7 @@ public class BinMathTest {
     {
         int[] operand1 = {1,1,0,1,1,1,0,1,0};
         int[] operand2 = {1,1,1,0,0};
-        int[] expected = {1,1,1,0,1,1,0,1,1,0};
+        int[] expected = {1,1,0,1,1,0,1,1,0};
         assertArrayEquals(expected, BinMath.addBinaryNumbers(operand1, operand2));
     }
 
@@ -174,7 +174,7 @@ public class BinMathTest {
     {
         int[] operand1 = {1,0,0,1,0,1,0,0,0};
         int[] operand2 = {1,0,1,0,1};
-        int[] expected = {1,1,0,0,0,1,1,1,0,1};
+        int[] expected = {1,0,0,0,1,1,1,0,1};
         assertArrayEquals(expected, BinMath.addBinaryNumbers(operand1, operand2));  
     }
 

@@ -95,33 +95,41 @@ public class BinMath
     {
         int[] sumBinNum;
         int transfer = 0;
-        if (operand1.length >= operand2.length)
+        int filledWithOne = 0;
+        if (operand1.length > operand2.length)
         {
             sumBinNum = new int[operand1.length];
-            if (operand1.length != operand2.length)
+            
+            if (operand2[0] == 0)
             {
-                if (operand2[0] == 0)
-                {
-                    operand2 = addZeroToArrayBegin(operand2, operand1.length - operand2.length);
-                }
-                else
-                {
-                    operand2 = addOneToArrayBegin(operand2, operand1.length - operand2.length);
-                }
+                operand2 = addZeroToArrayBegin(operand2, operand1.length - operand2.length);
+            }
+            else
+            {
+                operand2 = addOneToArrayBegin(operand2, operand1.length - operand2.length);
+                filledWithOne = 1;
             }
         }
-        else
+            
+        else if (operand1.length < operand2.length)
         {
             sumBinNum = new int[operand2.length];
-            if (operand2[0] == 0)
+            if (operand1[0] == 0)
             {
                 operand1 = addZeroToArrayBegin(operand1, operand2.length-operand1.length);
             }
             else 
             {
                 operand1 = addOneToArrayBegin(operand1, operand2.length-operand1.length);
+                filledWithOne = 1;
             }
         }
+
+        else
+        {
+            sumBinNum = new int[operand1.length];
+        }
+
         for (int i = sumBinNum.length - 1; i > 0; i--)
         {
             if ((operand1[i] + operand2[i] + transfer == 0) || (operand1[i] + operand2[i] + transfer == 1))
@@ -157,16 +165,31 @@ public class BinMath
             sumBinNum[0] = 0;
             return sumBinNum;
         } 
-        else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 1) 
+        else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 1) // anpassung für auffüllung einfügen
         {
-            sumBinNum[0] = 0;
-            sumBinNum = addSpaceToArray(sumBinNum);
-            sumBinNum[0] = 1;
-            return sumBinNum;
+            if (filledWithOne == 0)
+            {
+                sumBinNum[0] = 0;
+                sumBinNum = addSpaceToArray(sumBinNum);
+                sumBinNum[0] = 1;
+            }
+            else
+            {
+                sumBinNum[0] = 0;
+            }
+                return sumBinNum;
         } 
-        else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 0) 
+        else if ((operand1[0] == 0 ^ operand2[0] == 0) && transfer == 0) // anpassung für auffüllung einfügen
         {
-            sumBinNum[0] = 1;
+            if (filledWithOne == 1)
+            {
+                sumBinNum[0] = 0;
+            }
+            else
+            {
+
+                sumBinNum[0] = 1;
+            }
             return sumBinNum;
         } 
         else if (operand1[0] == 1 && operand2[0] == 1 && transfer == 0) 
@@ -178,8 +201,6 @@ public class BinMath
         } 
         else if (operand1[0] == 1 && operand2[0] == 1 && transfer == 1) 
         {
-            sumBinNum[0] = 1;
-            sumBinNum = addSpaceToArray(sumBinNum);
             sumBinNum[0] = 1;
             return sumBinNum;
         } 
@@ -279,4 +300,19 @@ public class BinMath
                 return binNumber;
             }
     }
+
+
+/*
+*testRandomAddBinaryNumbers(): failure. 0 marks
+*Fehler: Die addBinaryNumbers-Methode scheint die Binaerzahlen [0, 0, 1, 0, 1, 0, 0, 1, 1] und [1, 0, 0, 0, 1] nicht korrekt zu addieren. ==> array contents differ at index [0], expected: <1> but was: <0>
+*
+*Hinweis: In diesem Test wird getestet, ob die Methode addBinaryNumbers() zufaellige Beispiele korrekt berechnet.
+*
+*001010011 (83)
+*111110001 (-15)
+*__________
+*001000100 (68)
+*
+*Was soll hier falsch sein?
+*/
 }

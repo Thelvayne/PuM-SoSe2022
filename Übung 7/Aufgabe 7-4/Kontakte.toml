@@ -1,9 +1,9 @@
-kontakt1]
+[kontakt1]
 first_name ="Alice"
 last_name ="Klassenkameradin"
 phone ="01234-56789"
 messenger =["WhatsApp", "Facebook Messenger", "Signal"]
-[kontakt2 =
+[kontakt2]
 first_name ="Bob"
 last_name ="Klassenkamerad"
 phone ="03451-2948301"

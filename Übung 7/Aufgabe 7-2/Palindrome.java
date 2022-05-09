@@ -12,12 +12,13 @@ public class Palindrome
     public Palindrome(String[] input)
     {
         this.input = input;
-        this.palindromes = null;
+        palindromes = new String[0];
+        findPalindromes(input);
     }
 
     public Palindrome()
     {
-        this.palindromes = null;
+       this.palindromes = new String[0];
     }
 
     public String[] getInput() 
@@ -71,10 +72,9 @@ public class Palindrome
             }            
             i++;
         }
-        if (palindromes == null)
-        {
-            palindromes = new String[0];
-        }
+        
+        
+        
     }
 
     /**
@@ -85,10 +85,6 @@ public class Palindrome
      */
     public static String[] addSpaceToArray(String[] input)
     { 
-        if (input == null){
-            input = new String[1];
-            return input;
-        }
         int oldLength = input.length;
         int newLength = oldLength + 1;
 
@@ -123,7 +119,7 @@ public class Palindrome
         String firstHalf = "";
         String secondHalf = "";
 
-        for (int i = 0; i <= length/2; i++)
+        for (int i = 0; i < length/2; i++)
         {
             String tempChar = createRandomChar();
             firstHalf = firstHalf + tempChar;
@@ -175,7 +171,6 @@ public class Palindrome
     public String printPalindromes()
     {
         String output = "";
-        findPalindromes(input);
         if (palindromes == null)
         {
             output = "Es wurden keine Palindrome gefunden.";

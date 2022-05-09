@@ -1,3 +1,6 @@
+// Nick Cwertetschka 4070430
+// Philipp Jäckel 4070258
+
 import java.io.IOException;
 import java.util.Scanner;
 

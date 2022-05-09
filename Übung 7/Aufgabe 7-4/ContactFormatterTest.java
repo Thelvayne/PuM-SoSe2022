@@ -14,11 +14,6 @@ public class ContactFormatterTest {
         String filenameTOML = "TestDreiKontakte.toml";
         ContactReader reader = new ContactReader();
         reader.readFromFile(filenameTOML);
-
-        // String currentPath = new java.io.File(".").getCanonicalPath();
-        // System.out.println("Current dir:" + currentPath);
-        // System.err.println(currentPath);
-
         assertEquals(3, reader.getContacts().length);
     }
 
@@ -42,6 +37,31 @@ public class ContactFormatterTest {
         assertEquals(null, reader.getContacts());
     }
 
-    // @Test
-    // void test
+     @Test
+     void testEmptyAttributs() throws IOException
+     {
+     String filenameTOML = "TestEmptyAttributs.toml";
+     ContactReader reader = new ContactReader();
+        reader.readFromFile(filenameTOML);
+
+        assertEquals("", reader.getContacts()[0].getFirstName());    
+     }
+     @Test
+     void testsixLength() throws IOException
+     {
+         String filenameTOML = "TestSechsKontakte.toml";
+         ContactReader reader = new ContactReader();
+         reader.readFromFile(filenameTOML);
+         assertEquals(6, reader.getContacts().length);
+     }
+ 
+     @Test
+     void testEmptyMessenger() throws IOException
+     {
+     String filenameTOML = "TestEmptyAttributs.toml";
+     ContactReader reader = new ContactReader();
+        reader.readFromFile(filenameTOML);
+
+        assertEquals(null, reader.getContacts()[0].getMessenger());    
+     }
 }
