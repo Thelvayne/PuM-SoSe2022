@@ -7,8 +7,6 @@ public class Game {
     private Board board;
     private Player playerOne, playerTwo;
 
-    private Player[] players = {playerOne, playerTwo};
-
     // Konstruktoren
 
 
@@ -38,22 +36,28 @@ public class Game {
     //Spielablauflogik
     public void play() {
 
+        Player[] players = {playerOne, playerTwo};
+
         int round = 1;
         String coordinate = "";
 
         while (round < 10) {
+            System.out.println("Round: "+round);
 
             //ermittelt eingabekoordinaten der jeweilgen Spieler
-            if (round % 2 == 1) {
-                board.setMark(playerOne.getFieldInput(), playerOne.getMark());
-            } else board.setMark(playerTwo.getFieldInput(), playerTwo.getMark());
-
+            if (round % 2 == 1)
+            {
+                coordinate = playerOne.getFieldInput();
+                board.setMark(coordinate, playerOne.getMark());
+            } else {
+                coordinate = playerTwo.getFieldInput();
+                board.setMark(coordinate, playerTwo.getMark());
+            }
             // ab dem 5. platzierten Mark kann der erste Sieger gefunden werden,
             // da min. 1 Spieler 3 Marks platzieren konnte.
             if (round > 5) {
-                for (Player player : players) {
-                    if (checkWin(board.convertInput(player.getFieldInput()), player.getMark())){
-                        board.isWinner(player.getMark());
+                for (Player p : players) {
+                    if (board.checkWin(p,coordinate)) {
                         return;
                     }
                 }
@@ -64,57 +68,5 @@ public class Game {
         board.isComplete();
 
     }
-
-    /**
-     * convertInput
-     * <p>
-     * wandelt den input aus getFieldInput Koordinaten als int[2] um
-     */
-
-
-
-
-    /**
-     * checkWin
-     * <p>
-     * startet den Rekursiven Algorithmus, der in alle richtungen die PlayerMarks vergleicht
-     */
-
-    private boolean checkWin(int[] p, char m) {
-
-        int x = p[0];
-        int y = p[1];
-
-        if (m == checkWinR(x, y, m)) return true;
-        else
-            return false;
-    }
-
-    /**
-     * checkWinR
-     */
-
-
-    // startet Rekursive Prüfmethode, die in alle richtungen die String vergleicht
-    private char checkWinR(int x, int y, char m) {
-        if (x >= 0 && x <= 2) {
-            if (y >= 0 && y <= 2) {
-                //Diagonal
-                if (checkWinR(y - 1, x - 1, m) == checkWinR(x, y, m)) return m;
-                else if (checkWinR(y + 1, x - 1, m) == checkWinR(x, y, m)) return m;
-                else if (checkWinR(y - 1, x + 1, m) == checkWinR(x, y, m)) return m;
-                else if (checkWinR(y + 1, x + 1, m) == checkWinR(x, y, m)) return m;
-                //Horizontal
-                if (checkWinR(x - 1, y, m) == checkWinR(x, y, m)) return m;
-                else if (checkWinR(x + 1, y, m) == checkWinR(x, y, m)) return m;
-                //Vertical
-                if (checkWinR(x, y - 1, m) == checkWinR(x, y, m)) return m;
-                else if (checkWinR(x, y + 1, m) == checkWinR(x, y, m)) return m;
-            }
-        }
-        return '-';
-
-    }
-
 
 }
