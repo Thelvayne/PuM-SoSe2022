@@ -7,6 +7,8 @@ public class Board {
 
     private char[][] fields;
 
+    private boolean[][] fieldsBlocked;
+
     public char[][] getFields() {
         return fields;
     }
@@ -14,6 +16,13 @@ public class Board {
     public Board() {
 
         fields = new char[3][3];
+
+        fieldsBlocked = new boolean[][]
+                {
+                        {false,false,false},
+                        {false,false,false},
+                        {false,false,false}
+                };
 
     }
 
@@ -30,10 +39,12 @@ public class Board {
 
         int[] x = convertInput(f);
 
-        if (!Character.isSpaceChar(read(f)))
+        if (!Character.isSpaceChar(read(f)) && fieldsBlocked[x[0]][x[1]]==false)
         {
             if(Character.valueOf(read(f))!='o' && Character.valueOf(read(f))!='x'){
+
             fields[x[0]][x[1]] = m;
+            fieldsBlocked[x[0]][x[1]]=true;
 
             for(int i = 0;i<fields.length;i++){
                 System.out.println(Arrays.toString(fields[i]));
@@ -41,8 +52,9 @@ public class Board {
 
             return true;
         }
-        }
+        } else
             System.out.println("Platz schon besetzt");
+
             return false;
     }
 
@@ -131,12 +143,10 @@ public class Board {
         for(int i=0;i<w.length;i++){
             for(int j=0;j<w[i].length;j++)
             {
-                System.out.println(w[i][j]+" = "+m+"?");
                 if(w[i][j]==m)correctCount++;
             }
             if(correctCount==3){return true;} else
                 correctCount =0;
-            System.out.println("---------------------");
         }
         return false;
     }

@@ -6,7 +6,7 @@ public class TestTicTacToe {
 
     public static void main(String[] args){
 
-        Game game = new Game("ich","du");
+        Game game = new Game("ich");
 
         game.play();
 

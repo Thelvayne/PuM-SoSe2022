@@ -30,6 +30,8 @@ public class Game {
 
     public Game() {
 
+
+
         board = new Board();
     }
 
@@ -48,10 +50,12 @@ public class Game {
             if (round % 2 == 1)
             {
                 coordinate = playerOne.getFieldInput();
-                board.setMark(coordinate, playerOne.getMark());
+                if(board.setMark(coordinate, playerOne.getMark())==false) {continue;
+                } else board.setMark(coordinate, playerOne.getMark());
             } else {
                 coordinate = playerTwo.getFieldInput();
-                board.setMark(coordinate, playerTwo.getMark());
+                if(board.setMark(coordinate, playerTwo.getMark())==false) {continue;
+                } else board.setMark(coordinate, playerTwo.getMark());
             }
             // ab dem 5. platzierten Mark kann der erste Sieger gefunden werden,
             // da min. 1 Spieler 3 Marks platzieren konnte.
