@@ -1,6 +1,7 @@
-package three;
+package three.tictactoe;
 
-import javax.xml.stream.events.Characters;
+import three.tictactoe.player.Player;
+
 import java.util.Arrays;
 
 public class Board {
@@ -50,12 +51,10 @@ public class Board {
                 System.out.println(Arrays.toString(fields[i]));
             }
 
-            return true;
-        }
-        } else
-            System.out.println("Platz schon besetzt");
+        }return true;
 
-            return false;
+        } else
+        return false;
     }
 
     //gibt true zurück, wenn alle felder besetzt sind (nach 9 zügen)

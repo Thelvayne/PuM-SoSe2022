@@ -1,4 +1,4 @@
-package three;
+package three.tictactoe.player;
 
 import java.util.Arrays;
 import java.util.Scanner;

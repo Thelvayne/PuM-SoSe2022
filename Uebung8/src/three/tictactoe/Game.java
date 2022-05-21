@@ -1,6 +1,7 @@
-package three;
+package three.tictactoe;
 
-import java.util.Scanner;
+import three.tictactoe.player.Computer;
+import three.tictactoe.player.Player;
 
 public class Game {
 
@@ -50,16 +51,20 @@ public class Game {
             if (round % 2 == 1)
             {
                 coordinate = playerOne.getFieldInput();
-                if(board.setMark(coordinate, playerOne.getMark())==false) {continue;
+                if(board.setMark(coordinate, playerOne.getMark())==false) {
+                    System.out.println("Platz schon besetzt oder falsche Eingabe.");
+                    continue;
                 } else board.setMark(coordinate, playerOne.getMark());
             } else {
                 coordinate = playerTwo.getFieldInput();
-                if(board.setMark(coordinate, playerTwo.getMark())==false) {continue;
+                if(board.setMark(coordinate, playerTwo.getMark())==false) {
+                    System.out.println("Platz schon besetzt oder falsche Eingabe.");
+                    continue;
                 } else board.setMark(coordinate, playerTwo.getMark());
             }
             // ab dem 5. platzierten Mark kann der erste Sieger gefunden werden,
             // da min. 1 Spieler 3 Marks platzieren konnte.
-            if (round > 5) {
+            if (round > 4) {
                 for (Player p : players) {
                     if (board.checkWin(p,coordinate)) {
                         return;

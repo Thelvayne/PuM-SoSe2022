@@ -1,6 +1,4 @@
-package three;
-
-import java.util.Arrays;
+package three.tictactoe.player;
 
 public class Computer extends Player {
     public Computer(String n, char m)

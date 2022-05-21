@@ -12,10 +12,10 @@ public class PetShelter
 
 
         PetShelterTest test = new PetShelterTest();
-
+/*
         test.testSay();
         test.testMove();
         test.testPolymorph();
-
+*/
     }
 }
